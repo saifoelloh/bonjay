@@ -1,0 +1,62 @@
+{
+  "name": "bonjay",
+  "version": "0.1.0",
+  "description": "AI Skill Generator — scaffold AI rules & skills for your project interactively",
+  "type": "module",
+  "bin": {
+    "bonjay": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node ./dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai",
+    "skills",
+    "rules",
+    "cursor",
+    "claude",
+    "gemini",
+    "cli",
+    "generator",
+    "developer-tools"
+  ],
+  "author": "saifoelloh <saifoelloh@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saifoelloh/bonjay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saifoelloh/bonjay/issues"
+  },
+  "homepage": "https://github.com/saifoelloh/bonjay#readme",
+  "dependencies": {
+    "@inquirer/prompts": "^7.5.0",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "fs-extra": "^11.3.0",
+    "js-yaml": "^4.1.0",
+    "ora": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.15.3",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
