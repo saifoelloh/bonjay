@@ -4,19 +4,19 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/saifoelloh/bonjay/ci.yml?branch=main&style=flat-square)](https://github.com/saifoelloh/bonjay/actions)
 
-Pernah ngerasa AI assistant lo (Cursor, Copilot, Gemini, Claude) kadang suka *nge-blank* atau ngawur karena kurang paham konteks project lo? Atau lo ngerasa boncos token gara-gara harus ngejelasin *coding fundamentals* berulang kali ke AI?
+Ever felt like your AI assistant (Cursor, Copilot, Gemini, Claude) just randomly *blanks out* or hallucinates because it doesn't understand your project's context? Or maybe you're tired of burning through tokens just to explain basic coding fundamentals over and over again?
 
-**Bonjay hadir buat nyelesaiin masalah itu!** 🚀
+**Bonjay is here to fix exactly that!** 🚀
 
-Bonjay adalah CLI tool yang bertindak sebagai jembatan komunikasi antara lo (*developer*) dan *AI agent*. Anggap aja Bonjay ini kayak "buku saku sakti" buat AI lo. Dengan men-scaffold *AI tooling context (rules & skills)* secara langsung ke dalam project, AI lo bakal langsung paham *code base* dan *fundamental software engineering* (seperti SOLID, GoF, OWASP) tanpa lo harus capek-capek ngetik *prompt* panjang lebar.
+Bonjay is a CLI tool that acts as the ultimate bridge between you and your AI agent. Think of it as a "pocket rulebook" for your AI. By scaffolding *AI tooling context (rules & skills)* directly into your project, your AI instantly understands your codebase and fundamental software engineering principles (like SOLID, GoF patterns, OWASP) without you having to type long, repetitive prompts.
 
-## Kenapa harus pakai Bonjay?
+## Why use Bonjay?
 
-- 🤝 **Bikin AI Lo Makin Pinter**: Ngurangin halusinasi AI karena mereka udah dapet konteks *best practices* yang jelas.
-- 💸 **Hemat Token & Waktu**: Gak perlu lagi *copy-paste* aturan `.cursor/rules/*.mdc` atau nulis *prompt* dari nol. Biar Bonjay yang *scaffold* konteksnya dalam hitungan detik!
-- 🌍 **Bahasa Pemrograman Bebas (*Language-Agnostic Core*)**: Aturan fundamental yang dibawa Bonjay (Algorithms, Database Design, Security) berlaku buat bahasa apa aja, mau itu Go, TypeScript, atau Python.
-- 🎯 **Multi-Agent Support**: Outputnya udah dioptimasi buat berbagai AI agent kesayangan lo.
-- 🗂️ **Single Source of Truth**: Lacak semua hal yang udah dipelajarin AI lo lewat file `bonjay.json`.
+- 🤝 **Make Your AI Smarter**: Significantly reduce AI hallucinations by providing clear, curated *best practices* and context from the get-go.
+- 💸 **Save Tokens & Time**: Stop copy-pasting `.cursor/rules/*.mdc` rules or writing prompts from scratch. Let Bonjay scaffold the context in seconds!
+- 🌍 **Language-Agnostic Core**: The fundamental rules shipped with Bonjay (Algorithms, Database Design, Security) apply universally, whether you're coding in Go, TypeScript, or Python.
+- 🎯 **Multi-Agent Support**: The output is perfectly optimized for your favorite AI agents.
+- 🗂️ **Single Source of Truth**: Keep track of everything your AI has learned through the `bonjay.json` file.
 
 ## Quick Start
 
