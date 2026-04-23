@@ -4,7 +4,7 @@
   "description": "AI Skill Generator — scaffold AI rules & skills for your project interactively",
   "type": "module",
   "bin": {
-    "bonjay": "./dist/index.js"
+    "bonjay": "dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [
@@ -34,7 +34,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/saifoelloh/bonjay.git"
+    "url": "git+https://github.com/saifoelloh/bonjay.git"
   },
   "bugs": {
     "url": "https://github.com/saifoelloh/bonjay/issues"
