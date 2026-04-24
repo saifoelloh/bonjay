@@ -41,8 +41,31 @@ export async function initCommand(): Promise<void> {
   spinner.succeed(chalk.green('Done!'))
 
   console.log()
-  generated.forEach((path) => {
-    console.log(chalk.dim('  ✓'), chalk.cyan(path))
+  
+  // Group paths by target directory for cleaner output
+  const byDir: Record<string, string[]> = {}
+  generated.forEach((p) => {
+    const cleaned = p.endsWith('/') ? p.slice(0, -1) : p
+    const lastSlash = cleaned.lastIndexOf('/')
+    
+    let dir = cleaned
+    let skill = ''
+    
+    if (lastSlash !== -1) {
+      dir = cleaned.substring(0, lastSlash)
+      skill = cleaned.substring(lastSlash + 1)
+    }
+    
+    if (!byDir[dir]) byDir[dir] = []
+    if (skill) byDir[dir].push(skill)
+  })
+
+  Object.entries(byDir).forEach(([dir, skills]) => {
+    console.log(chalk.dim(`  ${dir}/`))
+    if (skills.length > 0) {
+      console.log(`    ${chalk.cyan(skills.join(', '))}`)
+    }
+    console.log() // Add spacing between directories
   })
 
   console.log()

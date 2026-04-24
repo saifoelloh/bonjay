@@ -45,40 +45,15 @@ export async function runInitWizard(): Promise<WizardResult> {
     validate: (val) => val.length > 0 || 'Please select at least one group.',
   })
 
-  // Step 3: Individual skill selection (optional)
-  const wantsGranular = await confirm({
-    message: 'Do you want to select individual skills within each group?',
-    default: false,
-  })
-
+  // Step 3: Automatically select all skills in the chosen groups
   const selectedGroups: Record<string, string[]> = {}
 
   for (const groupId of selectedGroupIds) {
     const group = registry.getGroup(groupId)
     if (!group) continue
 
-    if (wantsGranular) {
-      console.log()
-      console.log(chalk.bold(`  ${group.icon} ${group.name}`))
-
-      const skillChoices = group.skills.map((s) => ({
-        name: `${chalk.bold(s.id)} ${chalk.dim(`— ${s.description}`)}`,
-        value: s.id,
-        checked: true,
-      }))
-
-      const selected = await checkbox({
-        message: `  Select skills from "${group.name}":`,
-        choices: skillChoices,
-      })
-
-      if (selected.length > 0) {
-        selectedGroups[groupId] = selected
-      }
-    } else {
-      // Select all skills in the group
-      selectedGroups[groupId] = group.skills.map((s) => s.id)
-    }
+    // Select all skills in the group
+    selectedGroups[groupId] = group.skills.map((s) => s.id)
   }
 
   return { ai_targets, selectedGroups }
