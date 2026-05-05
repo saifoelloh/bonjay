@@ -15,7 +15,9 @@ Bonjay is a CLI tool that acts as the ultimate bridge between you and your AI ag
 - 🤝 **Make Your AI Smarter**: Significantly reduce AI hallucinations by providing clear, curated *best practices* and context from the get-go.
 - 💸 **Save Tokens & Time**: Stop copy-pasting `.cursor/rules/*.mdc` rules or writing prompts from scratch. Let Bonjay scaffold the context in seconds!
 - 🌍 **Language-Agnostic Core**: The fundamental rules shipped with Bonjay (Algorithms, Database Design, Security) apply universally, whether you're coding in Go, TypeScript, or Python.
-- 🎯 **Multi-Agent Support**: The output is perfectly optimized for your favorite AI agents.
+- 🎯 **Multi-Agent Support**: Output is perfectly optimized for Gemini, Cursor, and Claude with target-specific formatters.
+- 🧠 **Project Memory System**: Automatically injects your project's history and decisions into the AI's context.
+- 🚀 **Rule Evolution**: Capture new rules and lessons learned directly from your chat session.
 - 🗂️ **Single Source of Truth**: Keep track of everything your AI has learned through the `bonjay.json` file.
 
 ## Quick Start
@@ -35,6 +37,9 @@ Bonjay currently ships with 13 domains across 5 core groups:
 3. ⚙️ **Engineering Practices** (Code Quality/SOLID, Testing Strategy, Concurrency)
 4. 🗃️ **Data & Systems** (Database Fundamentals, API Design, Memory Management)
 5. 🔒 **Security** (OWASP Top 10, AuthN/AuthZ, Secret Management)
+6. 🧠 **Project Context** (Project Memory, Historical Context, Knowledge Items)
+7. 🤖 **AI Persona** (Communication Style, Persona Rules)
+8. 🔀 **Version Control** (Git Commits, Branching Strategy, Releases)
 
 ## Commands
 
@@ -70,6 +75,12 @@ bonjay list
 Regenerate all installed skills with the latest rules provided by your installed version of Bonjay.
 ```bash
 bonjay update
+```
+
+### `capture`
+Capture a new rule or insight learned during development into your project's memory.
+```bash
+bonjay capture "Always use PascalCase for types" --title "Naming Convention"
 ```
 
 ## How It Works
