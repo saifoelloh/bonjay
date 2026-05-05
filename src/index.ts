@@ -7,6 +7,7 @@ import { addCommand } from './commands/add.js'
 import { removeCommand } from './commands/remove.js'
 import { listCommand } from './commands/list.js'
 import { updateCommand } from './commands/update.js'
+import { captureCommand } from './commands/capture.js'
 
 
 const program = new Command()
@@ -45,5 +46,13 @@ program
   .command('update')
   .description('Regenerate all installed skills with latest rules')
   .action(updateCommand)
+
+program
+  .command('capture')
+  .description('Capture a new rule or insight into the project memory')
+  .argument('<rule>', 'The rule or insight to capture')
+  .option('-t, --title <title>', 'Title for this rule')
+  .option('-s, --skill <id>', 'Specific skill ID this belongs to')
+  .action(captureCommand)
 
 program.parse()

@@ -1,6 +1,6 @@
 {
   "name": "bonjay",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "AI Skill Generator — scaffold AI rules & skills for your project interactively",
   "type": "module",
   "bin": {
@@ -11,8 +11,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "generate:loader": "node scripts/generate-loader.js",
+    "build": "npm run generate:loader && tsup",
+    "dev": "npm run generate:loader && tsup --watch",
     "start": "node ./dist/index.js",
     "test": "vitest run",
     "test:watch": "vitest",
