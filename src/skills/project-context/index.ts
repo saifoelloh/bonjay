@@ -1,4 +1,5 @@
 import { registry } from '../registry.js'
+import './codebase-analyzer.js'
 
 registry.registerGroup({
   id: 'project-context',
@@ -7,6 +8,7 @@ registry.registerGroup({
   description: 'Project-specific knowledge, architecture decisions, and historical context',
   skills: [
     { id: 'memory', description: 'Injects local knowledge items from the knowledge/ folder' },
+    { id: 'codebase-analyzer', description: 'Systematic codebase scanning and architecture mapping' },
   ],
 })
 
