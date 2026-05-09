@@ -8,7 +8,8 @@ import { removeCommand } from './commands/remove.js'
 import { listCommand } from './commands/list.js'
 import { updateCommand } from './commands/update.js'
 import { captureCommand } from './commands/capture.js'
-
+import { syncGraphCommand } from './commands/sync-graph.js'
+import { hookCommand } from './commands/hook.js'
 
 const program = new Command()
 
@@ -54,5 +55,16 @@ program
   .option('-t, --title <title>', 'Title for this rule')
   .option('-s, --skill <id>', 'Specific skill ID this belongs to')
   .action(captureCommand)
+
+program
+  .command('sync-graph')
+  .description('Automatically scan the project and update docs/architecture.md graph')
+  .action(syncGraphCommand)
+
+program
+  .command('hook')
+  .description('Manage Git hooks (e.g. bonjay hook install)')
+  .argument('<action>', 'Action to perform (install)')
+  .action(hookCommand)
 
 program.parse()
