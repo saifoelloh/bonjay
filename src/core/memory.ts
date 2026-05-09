@@ -5,7 +5,7 @@ import yaml from 'js-yaml'
 export interface KnowledgeItem {
   id: string
   title: string
-  content: string
+  content: string | (() => Promise<string>)
   metadata?: any
 }
 
@@ -26,22 +26,26 @@ export class MemoryManager {
 
     for (const file of files) {
       if (file.endsWith('.md')) {
-        const fullPath = path.join(this.knowledgeDir, file)
-        const rawContent = await fs.readFile(fullPath, 'utf-8')
-        
-        // Simple frontmatter parsing (could be improved)
         const id = path.basename(file, '.md')
         const isEvolved = id === 'evolved-rules'
         
         items.push({
           id,
           title: isEvolved ? '🚀 EVOLVED PROJECT RULES' : id.replace(/-/g, ' ').toUpperCase(),
-          content: rawContent,
+          content: async () => this.loadContent(id),
           metadata: { isEvolved }
         })
       }
     }
 
     return items
+  }
+
+  async loadContent(id: string): Promise<string> {
+    const fullPath = path.join(this.knowledgeDir, `${id}.md`)
+    if (await fs.pathExists(fullPath)) {
+      return fs.readFile(fullPath, 'utf-8')
+    }
+    return ''
   }
 }

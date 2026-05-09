@@ -19,6 +19,7 @@ Bonjay is a CLI tool that acts as the ultimate bridge between you and your AI ag
 - 🧠 **Project Memory System**: Automatically injects your project's history and decisions into the AI's context.
 - 🚀 **Rule Evolution**: Capture new rules and lessons learned directly from your chat session.
 - 🗂️ **Single Source of Truth**: Keep track of everything your AI has learned through the `bonjay.json` file.
+- ⚡ **Blazing Fast**: Uses lazy loading and concurrent disk I/O to scaffold rules instantly, even on massive repositories.
 
 ## Quick Start
 
@@ -92,7 +93,9 @@ bonjay capture "Always use PascalCase for types" --title "Naming Convention"
 
 ## Extensibility
 
-Bonjay is built with a decoupled Registry system. In the future, you will be able to install custom skill packs via `npx bonjay add user/custom-skill`.
+Bonjay is built with a decoupled Registry system and supports **Dynamic Skill Discovery**. You can create custom skills specifically for your project by simply dropping your JavaScript modules (`.js` or `.mjs`) into the `.bonjay/skills/` directory at the root of your project. Bonjay will automatically discover and load them at runtime without needing to recompile the core!
+
+In the future, you will also be able to install custom skill packs from the community via `npx bonjay add user/custom-skill`.
 
 ## Contributing
 

@@ -1,7 +1,11 @@
+import fs from 'fs-extra'
+import path from 'path'
+import { pathToFileURL } from 'url'
+
 export interface Rule {
   id: string
   priority: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW'
-  content: string
+  content: string | (() => Promise<string>)
 }
 
 export interface SkillDef {
@@ -54,6 +58,23 @@ class Registry {
 
   getAllSkills(): SkillDef[] {
     return Array.from(this.skills.values())
+  }
+
+  async discoverCustomSkills(dirPath: string): Promise<void> {
+    if (!(await fs.pathExists(dirPath))) return
+    
+    const files = await fs.readdir(dirPath)
+    for (const file of files) {
+      if (file.endsWith('.js') || file.endsWith('.mjs')) {
+        const fullPath = path.join(dirPath, file)
+        const fileUrl = pathToFileURL(fullPath).href
+        try {
+          await import(fileUrl)
+        } catch (error) {
+          console.error(`Failed to load custom skill from ${file}:`, error)
+        }
+      }
+    }
   }
 }
 

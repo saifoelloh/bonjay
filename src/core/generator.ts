@@ -18,6 +18,10 @@ export async function generateFromConfig(
   const generated: string[] = []
   let total_rules = 0
 
+  // Handle Custom Skills
+  const customSkillsDir = path.join(cwd, '.bonjay', 'skills')
+  await registry.discoverCustomSkills(customSkillsDir)
+
   // Handle Memory/Knowledge Items
   const memoryManager = new MemoryManager(cwd)
   const knowledgeItems = await memoryManager.scan()
@@ -32,6 +36,8 @@ export async function generateFromConfig(
       }))
     }
   }
+
+  const writeTasks: Promise<void>[] = []
 
   for (const target of config.ai_targets) {
     const adapter = getTargetAdapter(target)
@@ -51,27 +57,34 @@ export async function generateFromConfig(
         const skillDir = path.join(baseDir, skillId)
         const rulesDir = path.join(skillDir, 'rules')
 
-        await fs.ensureDir(rulesDir)
+        writeTasks.push((async () => {
+          await fs.ensureDir(rulesDir)
 
-        // Write SKILL.md
-        const formatter = adapter.formatter ?? defaultFormatter
-        const skillMd = formatter(skill)
-        await fs.writeFile(path.join(skillDir, 'SKILL.md'), skillMd, 'utf-8')
+          // Write SKILL.md
+          const formatter = adapter.formatter ?? defaultFormatter
+          const skillMd = formatter(skill)
+          await fs.writeFile(path.join(skillDir, 'SKILL.md'), skillMd, 'utf-8')
 
-        // Write each rule file
-        for (const rule of skill.rules) {
-          await fs.writeFile(
-            path.join(rulesDir, `${rule.id}.md`),
-            rule.content,
-            'utf-8'
-          )
-          total_rules++
-        }
+          // Write each rule file
+          const ruleTasks = skill.rules.map(async (rule) => {
+            const content = typeof rule.content === 'function' ? await rule.content() : rule.content
+            await fs.writeFile(
+              path.join(rulesDir, `${rule.id}.md`),
+              content,
+              'utf-8'
+            )
+          })
 
+          await Promise.all(ruleTasks)
+        })())
+
+        total_rules += skill.rules.length
         generated.push(`${adapter.outputDir}/${skillId}/`)
       }
     }
   }
+
+  await Promise.all(writeTasks)
 
   return { generated, total_rules }
 }
