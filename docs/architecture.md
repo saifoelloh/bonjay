@@ -91,6 +91,11 @@ graph TD
         src_skills_data_and_systems_memory_management_large_object_allocation_md["large-object-allocation.md"]
         src_skills_data_and_systems_memory_management_object_pools_md["object-pools.md"]
     end
+    subgraph src_skills_data_and_systems_api_design["src/skills/data-and-systems/api-design"]
+        src_skills_data_and_systems_api_design_data_minimization_md["data-minimization.md"]
+        src_skills_data_and_systems_api_design_idempotency_keys_md["idempotency-keys.md"]
+        src_skills_data_and_systems_api_design_api_input_validation_md["api-input-validation.md"]
+    end
     subgraph src_skills_engineering_practices["src/skills/engineering-practices"]
         src_skills_engineering_practices_index_ts["index.ts"]
         src_skills_engineering_practices_index_js["index.js"]
@@ -133,6 +138,8 @@ graph TD
         src_skills_security_security_fundamentals_secret_management_md["secret-management.md"]
         src_skills_security_security_fundamentals_password_hashing_md["password-hashing.md"]
         src_skills_security_security_fundamentals_xss_prevention_md["xss-prevention.md"]
+        src_skills_security_security_fundamentals_information_disclosure_prevention_md["information-disclosure-prevention.md"]
+        src_skills_security_security_fundamentals_mass_assignment_prevention_md["mass-assignment-prevention.md"]
     end
     subgraph src_skills_software_design_design_patterns["src/skills/software-design/design-patterns"]
         src_skills_software_design_design_patterns_factory_pattern_md["factory-pattern.md"]
@@ -208,6 +215,9 @@ graph TD
     src_skills_data_and_systems_index_ts --> src_skills_data_and_systems_memory_management_escape_analysis_md
     src_skills_data_and_systems_index_ts --> src_skills_data_and_systems_memory_management_large_object_allocation_md
     src_skills_data_and_systems_index_ts --> src_skills_data_and_systems_memory_management_object_pools_md
+    src_skills_data_and_systems_index_ts --> src_skills_data_and_systems_api_design_data_minimization_md
+    src_skills_data_and_systems_index_ts --> src_skills_data_and_systems_api_design_idempotency_keys_md
+    src_skills_data_and_systems_index_ts --> src_skills_data_and_systems_api_design_api_input_validation_md
     src_skills_engineering_practices_index_ts --> src_skills_registry_js
     src_skills_engineering_practices_index_ts --> src_skills_engineering_practices_code_quality_solid_single_responsibility_md
     src_skills_engineering_practices_index_ts --> src_skills_engineering_practices_code_quality_solid_open_closed_md
@@ -238,6 +248,8 @@ graph TD
     src_skills_security_index_ts --> src_skills_security_security_fundamentals_secret_management_md
     src_skills_security_index_ts --> src_skills_security_security_fundamentals_password_hashing_md
     src_skills_security_index_ts --> src_skills_security_security_fundamentals_xss_prevention_md
+    src_skills_security_index_ts --> src_skills_security_security_fundamentals_information_disclosure_prevention_md
+    src_skills_security_index_ts --> src_skills_security_security_fundamentals_mass_assignment_prevention_md
     src_skills_software_design_index_ts --> src_skills_registry_js
     src_skills_software_design_index_ts --> src_skills_software_design_design_patterns_factory_pattern_md
     src_skills_software_design_index_ts --> src_skills_software_design_design_patterns_observer_pattern_md

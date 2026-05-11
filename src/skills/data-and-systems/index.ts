@@ -10,6 +10,9 @@ import memoryLeakPatternsRule from './memory-management/memory-leak-patterns.md'
 import escapeAnalysisRule from './memory-management/escape-analysis.md'
 import largeObjectAllocationRule from './memory-management/large-object-allocation.md'
 import objectPoolsRule from './memory-management/object-pools.md'
+import dataMinimizationRule from './api-design/data-minimization.md'
+import idempotencyKeysRule from './api-design/idempotency-keys.md'
+import apiInputValidationRule from './api-design/api-input-validation.md'
 
 registry.registerGroup({
   id: 'data-and-systems',
@@ -247,27 +250,17 @@ POST /v2/orders
     {
       id: 'idempotency-keys',
       priority: 'CRITICAL',
-      content: `---
-id: idempotency-keys
-priority: CRITICAL
-tags: [rest, api, idempotency, retries]
----
-
-# Rule: Require Idempotency Keys for State-Changing Operations
-
-## Context
-Networks are unreliable. A client might send a POST request, the server processes it successfully, but the network drops the response. The client retries. Without idempotency, they just charged the credit card twice.
-
-## How it works
-1. Client generates a unique UUID (Idempotency Key) for the operation.
-2. Client sends \`Idempotency-Key: <uuid>\` header with the POST request.
-3. Server checks if it has seen this key before.
-   - If yes: return the saved response from the first attempt.
-   - If no: process the request, save the response mapped to the key, return it.
-
-## Rule
-All endpoints that handle payments, emails, or critical state transitions must be idempotent.
-`,
+      content: idempotencyKeysRule,
+    },
+    {
+      id: 'data-minimization',
+      priority: 'HIGH',
+      content: dataMinimizationRule,
+    },
+    {
+      id: 'api-input-validation',
+      priority: 'HIGH',
+      content: apiInputValidationRule,
     },
   ],
 })

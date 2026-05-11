@@ -5,6 +5,8 @@ import authnVsAuthzRule from './security-fundamentals/authn-vs-authz.md'
 import secretManagementRule from './security-fundamentals/secret-management.md'
 import passwordHashingRule from './security-fundamentals/password-hashing.md'
 import xssPreventionRule from './security-fundamentals/xss-prevention.md'
+import informationDisclosurePreventionRule from './security-fundamentals/information-disclosure-prevention.md'
+import massAssignmentPreventionRule from './security-fundamentals/mass-assignment-prevention.md'
 
 registry.registerGroup({
   id: 'security',
@@ -57,6 +59,16 @@ registry.registerSkill({
       id: 'xss-prevention',
       priority: 'CRITICAL',
       content: xssPreventionRule,
+    },
+    {
+      id: 'information-disclosure-prevention',
+      priority: 'CRITICAL',
+      content: informationDisclosurePreventionRule,
+    },
+    {
+      id: 'mass-assignment-prevention',
+      priority: 'CRITICAL',
+      content: massAssignmentPreventionRule,
     },
   ],
 })
